@@ -28,6 +28,8 @@ def toggle_mode(payload: ToggleModeRequest):
 def update_type(payload: UpdateConversationTypeRequest):
     return controller._export_conversation(controller.update_type(payload))
 
+from fastapi.responses import StreamingResponse
+
 @router.post('/chat/send')
-def send_message(payload: SendMessageRequest):
-    return controller.send_message(payload)
+async def send_message(payload: SendMessageRequest):
+    return StreamingResponse(controller.send_message(payload), media_type='text/event-stream')

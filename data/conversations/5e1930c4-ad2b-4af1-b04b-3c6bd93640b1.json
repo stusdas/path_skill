@@ -1,0 +1,20 @@
+{
+  "id": "5e1930c4-ad2b-4af1-b04b-3c6bd93640b1",
+  "title": "新的会话",
+  "type": "standard",
+  "updated_at": "2026-04-30T09:51:54.341627",
+  "active_main_mode": "deep_understanding",
+  "active_sub_mode": null,
+  "messages": [],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {}
+}

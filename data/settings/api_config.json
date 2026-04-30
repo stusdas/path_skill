@@ -1,6 +1,6 @@
 {
-  "api_key": "",
+  "api_key": "sk-384896e1987e46e2ac0a75c4404c342f",
   "base_url": "https://api.deepseek.com/v1",
   "model": "deepseek-chat",
-  "mock_mode": true
+  "mock_mode": false
 }

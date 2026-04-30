@@ -2,9 +2,9 @@
   "id": "233dddf7-3ac7-4b41-b369-fe202412c3cb",
   "title": "E2E测试",
   "type": "standard",
-  "updated_at": "2026-04-29T18:09:04.065256",
-  "active_main_mode": "decision_support",
-  "active_sub_mode": "multi_role",
+  "updated_at": "2026-04-30T11:40:03.905245",
+  "active_main_mode": "deep_understanding",
+  "active_sub_mode": null,
   "messages": [
     {
       "role": "user",
@@ -15,22 +15,85 @@
       "role": "assistant",
       "content": "我先用几个不同视角陪你看：当前的你、未来的你、理性导师、情绪支持者。我们先看，它们最不一致的地方在哪里。",
       "created_at": "2026-04-29T18:09:04.065180"
+    },
+    {
+      "role": "user",
+      "content": "Hello, testing the button.",
+      "created_at": "2026-04-30T09:59:38.377961"
+    },
+    {
+      "role": "assistant",
+      "content": "我先不急着给你结论。对你来说，这个问题表面上是在选“考研还是工作”，更深一层其实是在选继续投入一个更长期的准备期，还是先进入现实环境里积累经验。",
+      "created_at": "2026-04-30T09:59:38.495384"
+    },
+    {
+      "role": "user",
+      "content": "你好",
+      "created_at": "2026-04-30T10:01:35.679700"
+    },
+    {
+      "role": "assistant",
+      "content": "我先不急着给你结论。对你来说，这个问题表面上是在选“考研还是工作”，更深一层其实是在选继续投入一个更长期的准备期，还是先进入现实环境里积累经验。",
+      "created_at": "2026-04-30T10:01:35.716129"
+    },
+    {
+      "role": "user",
+      "content": "你好",
+      "created_at": "2026-04-30T10:01:41.328014"
+    },
+    {
+      "role": "assistant",
+      "content": "我先不急着给你结论。对你来说，这个问题表面上是在选“考研还是工作”，更深一层其实是在选继续投入一个更长期的准备期，还是先进入现实环境里积累经验。",
+      "created_at": "2026-04-30T10:01:41.330277"
+    },
+    {
+      "role": "user",
+      "content": "23",
+      "created_at": "2026-04-30T10:04:44.913446"
+    },
+    {
+      "role": "assistant",
+      "content": "我先不急着给你结论。对你来说，这个问题表面上是在选“考研还是工作”，更深一层其实是在选继续投入一个更长期的准备期，还是先进入现实环境里积累经验。",
+      "created_at": "2026-04-30T10:04:44.923045"
+    },
+    {
+      "role": "card",
+      "content": {
+        "type": "path_compare_card",
+        "title": "路径对比卡",
+        "items": [
+          "已比较：考研路径 与 工作路径",
+          "当前更关键的问题：安全感与成长欲的冲突",
+          "建议继续确认：用户此刻的倾向是价值选择，还是压力选择。"
+        ]
+      },
+      "created_at": "2026-04-30T10:04:44.923431"
+    },
+    {
+      "role": "user",
+      "content": "你好",
+      "created_at": "2026-04-30T11:39:37.258445"
+    },
+    {
+      "role": "assistant",
+      "content": "我先不急着回答你“考研还是工作”哪个更好。对你来说，这个问题很可能不只是路径选择，而是在问：我现在到底该继续准备自己，还是该正式进入社会验证自己。",
+      "created_at": "2026-04-30T11:39:37.270901"
     }
   ],
   "analysis_state": {
-    "active": true,
-    "analysis_type": "multi_role_decision",
-    "stage": "first_role_views",
-    "stage_index": 2,
-    "topic": "请你根据我的资料，信息，帮我分析一下，我现阶段是考研还是找工作更好？",
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
     "waiting_for_user": false,
     "card_emitted": false,
     "slot_fill": {}
   },
   "short_term_memory": {
     "analysis_pack_cache": {
-      "question": "请你根据我的资料，信息，帮我分析一下，我现阶段是考研还是找工作更好？",
-      "include_roles": true,
+      "question": "23",
+      "include_roles": false,
       "pack": {
         "profile_summary": "高度自省、长期主义、在重大选择上容易过度权衡。",
         "decomposition": {
@@ -137,25 +200,12 @@
           ],
           "core_future_warning": "警惕为了缓解眼前焦虑而锁死长期空间。"
         },
-        "agent_views": {
-          "current_self": {
-            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
-          },
-          "future_self": {
-            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
-          },
-          "rational_mentor": {
-            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
-          },
-          "emotional_supporter": {
-            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
-          }
-        }
+        "agent_views": {}
       },
-      "updated_at": "2026-04-29T18:09:04.063542"
+      "updated_at": "2026-04-30T10:04:44.918447"
     },
-    "last_user_message": "请你根据我的资料，信息，帮我分析一下，我现阶段是考研还是找工作更好？",
-    "last_ai_reply": "我先用几个不同视角陪你看：当前的你、未来的你、理性导师、情绪支持者。我们先看，它们最不一致的地方在哪里。",
-    "last_stage": "first_role_views"
+    "last_user_message": "你好",
+    "last_ai_reply": "我先不急着回答你“考研还是工作”哪个更好。对你来说，这个问题很可能不只是路径选择，而是在问：我现在到底该继续准备自己，还是该正式进入社会验证自己。",
+    "last_stage": "inner_tension_identification"
   }
 }

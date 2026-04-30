@@ -1,4 +1,6 @@
 import json
+import asyncio
+import httpx
 import requests
 from core.chat_types import AppSettings
 from core.config import API_CONFIG_PATH, DEFAULT_BASE_URL, DEFAULT_MODEL
@@ -18,11 +20,15 @@ class LLMClient:
         settings = AppSettings(**cfg)
         return cls(settings.api_key, settings.base_url, settings.model, settings.mock_mode)
 
-    def complete(self, system_prompt: str, user_prompt: str, temperature: float = 0.3) -> str:
+    async def async_complete_stream(self, system_prompt: str, user_prompt: str, temperature: float = 0.3):
         if self.mock:
-            return self._mock_response(system_prompt, user_prompt)
+            async for chunk in self._mock_stream(system_prompt, user_prompt):
+                yield chunk
+            return
+
         if not self.api_key:
             raise ValueError('请先提供 API Key，或打开 Mock 模式')
+
         url = self.base_url.rstrip('/') + '/chat/completions'
         headers = {
             'Authorization': f'Bearer {self.api_key}',
@@ -35,11 +41,34 @@ class LLMClient:
                 {'role': 'user', 'content': user_prompt},
             ],
             'temperature': temperature,
+            'stream': True,
         }
-        r = requests.post(url, headers=headers, json=payload, timeout=180)
-        r.raise_for_status()
-        data = r.json()
-        return data['choices'][0]['message']['content']
+
+        async with httpx.AsyncClient(timeout=180.0) as client:
+            async with client.stream("POST", url, headers=headers, json=payload) as response:
+                response.raise_for_status()
+                async for line in response.aiter_lines():
+                    if not line.startswith("data: "):
+                        continue
+                    data_str = line[len("data: "):].strip()
+                    if data_str == "[DONE]":
+                        break
+                    try:
+                        data = json.loads(data_str)
+                        content = data['choices'][0]['delta'].get('content', '')
+                        if content:
+                            yield content
+                    except json.JSONDecodeError:
+                        continue
+
+    async def _mock_stream(self, system_prompt: str, user_prompt: str):
+        full_text = self._mock_response(system_prompt, user_prompt)
+        # Split into small chunks to simulate typing
+        chunk_size = 3
+        for i in range(0, len(full_text), chunk_size):
+            yield full_text[i:i+chunk_size]
+            await asyncio.sleep(0.02)
+
 
     def _mock_response(self, system_prompt: str, user_prompt: str) -> str:
         sp = system_prompt.lower()

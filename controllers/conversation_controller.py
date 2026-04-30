@@ -1,3 +1,4 @@
+import json
 import uuid
 from core.chat_types import (
     Conversation,
@@ -126,7 +127,7 @@ class ConversationController:
         prompt += f"\n用户本轮输入：{message_text}\n请严格按照当前模式与阶段回复。"
         return prompt
 
-    def send_message(self, payload: SendMessageRequest):
+    async def send_message(self, payload: SendMessageRequest):
         conv = load_conversation(payload.conversation_id)
         if payload.main_mode:
             conv.active_main_mode = payload.main_mode
@@ -140,11 +141,21 @@ class ConversationController:
         route = self.mode_router.route(conv.active_main_mode, conv.active_sub_mode, conv.analysis_state, payload.message)
         conv.analysis_state = self.analysis_machine.initialize_if_needed(conv.analysis_state, conv.active_main_mode, conv.active_sub_mode, payload.message[:80])
         context_bundle = self.context_selector.select(conv.active_main_mode, conv.active_sub_mode, user_memory, conv)
+        
+        # We can't build analysis_pack with streaming easily if it's a separate LLM call,
+        # but let's keep it sync for now or make it async.
+        # Actually, DecisionPackBuilder.build is sync. Let's make it work.
         analysis_pack = self._maybe_build_analysis_pack(conv, llm, payload.message)
 
         system_prompt = self.prompt_orchestrator.choose_reply_prompt(conv.active_main_mode, conv.active_sub_mode)
         user_prompt = self._build_user_prompt(payload.message, context_bundle, conv, analysis_pack=analysis_pack)
-        reply_text = llm.complete(system_prompt, user_prompt, temperature=0.25)
+        
+        full_reply = ""
+        async for chunk in llm.async_complete_stream(system_prompt, user_prompt, temperature=0.25):
+            full_reply += chunk
+            yield json.dumps({"type": "text", "content": chunk}, ensure_ascii=False) + "\n"
+
+        reply_text = full_reply
         conv.messages.append(ChatMessage(role='assistant', content=reply_text, created_at=now_iso()))
 
         conv.analysis_state = self.analysis_machine.advance(conv.analysis_state)
@@ -172,11 +183,13 @@ class ConversationController:
         conv.updated_at = now_iso()
         save_conversation(conv)
         dump_json(APP_STATE_PATH, {'last_opened_conversation_id': conv.id})
-        return {
-            'conversation': self._export_conversation(conv),
-            'reply': reply_text,
-            'card': card,
-            'suggest_deeper': route['suggest_deeper'],
-            'user_memory': user_memory.model_dump(),
-            'analysis_pack': analysis_pack,
-        }
+        
+        yield json.dumps({
+            "type": "final",
+            "conversation": self._export_conversation(conv),
+            "reply": reply_text,
+            "card": card,
+            "suggest_deeper": route['suggest_deeper'],
+            "user_memory": user_memory.model_dump(),
+            "analysis_pack": analysis_pack,
+        }, ensure_ascii=False) + "\n"
