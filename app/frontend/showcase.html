@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LifePath Showcase</title>
+  <style>
+    body{margin:0;font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;background:#f7f4ee;color:#161616}
+    .wrap{max-width:1100px;margin:0 auto;padding:40px 24px 80px}
+    .hero{padding:40px;border-radius:28px;background:white;box-shadow:0 20px 60px rgba(0,0,0,.06);margin-bottom:24px}
+    h1{font-size:44px;margin:0 0 12px}
+    h2{font-size:26px;margin:0 0 14px}
+    p{line-height:1.75;color:#4b4741}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+    .card{background:#fff;padding:24px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.05)}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#111;color:#fff;font-size:12px;margin-right:8px}
+    .flow{white-space:pre-wrap;background:#fff;padding:24px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,.05);font-family:ui-monospace,monospace}
+    a.btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:999px;background:#111;color:#fff;text-decoration:none}
+    @media (max-width: 820px){.grid{grid-template-columns:1fr} h1{font-size:34px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="tag">比赛展示页</div>
+      <h1>LifePath</h1>
+      <p>一个基于个体建模的长期决策优化系统。它不是只回答问题，而是通过聊天、记忆、画像、多角色视角和决策分析，帮助用户在重要节点做更清晰的长期选择。</p>
+      <a class="btn" href="/static/index.html">进入主产品界面</a>
+    </section>
+    <div class="grid">
+      <div class="card"><h2>核心能力</h2><p>长期画像、动态记忆、当前状态快照、多模式聊天、深度理解、决策辅助、多角色聊天、自我对立视角、不留痕聊天。</p></div>
+      <div class="card"><h2>模式差异</h2><p>普通聊天负责接住问题；深度理解负责看清人；决策辅助负责看清事；二级能力则在需要时打开更深的视角。</p></div>
+      <div class="card"><h2>四层记忆</h2><p>全局静态背景知识、全局动态记忆、当前会话短期记忆、当前状态快照。系统能持续理解用户，也保留边界感。</p></div>
+      <div class="card"><h2>比赛亮点</h2><p>不是简单套壳聊天，而是把个体建模、长期记忆、决策分析和产品化交互放进同一系统。</p></div>
+    </div>
+    <div class="flow" style="margin-top:24px">演示建议流程
+1. 先上传资料，建立理解
+2. 用同一个问题切换三种模式
+3. 再开启二级能力，对比差异
+4. 展示四层记忆浮层
+5. 切到不留痕聊天，展示边界感</div>
+  </div>
+</body>
+</html>

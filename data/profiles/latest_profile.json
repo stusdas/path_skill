@@ -1,0 +1,159 @@
+{
+  "human_info_card": {
+    "nickname": "未填写",
+    "occupation": "学生/青年探索期",
+    "labels": [
+      "长期主义",
+      "纠结型"
+    ]
+  },
+  "expression_style": {
+    "sentence_style": "结构化长句"
+  },
+  "self_memory": {
+    "work_view": "重视长期成长"
+  },
+  "behavior_patterns": {
+    "decision_pattern": "纠结但认真"
+  },
+  "implicit_beliefs": {
+    "core_needs": [
+      "减少后悔"
+    ]
+  },
+  "four_layer_system": {
+    "input_layer": {
+      "value_filter": [
+        "成长"
+      ]
+    }
+  },
+  "executive_summary": "高度自省、长期主义、在重大选择上容易过度权衡。",
+  "evidence_quotes": [
+    "人生局部最优解"
+  ],
+  "evidence_index": [
+    {
+      "file_name": "manual_note.txt",
+      "file_type": "txt",
+      "source_path": "/mnt/data/enhance_work/lifepath_chat_upgrade/data/uploads/manual_note.txt",
+      "file_summary": "该文件包含用户自述与成长/稳定冲突线索。",
+      "identity_clues": [
+        "长期主义"
+      ],
+      "style_clues": [
+        "结构化表达"
+      ],
+      "events": [
+        "面临关键选择"
+      ],
+      "evidence_quotes": [
+        "我怕选错路"
+      ]
+    }
+  ],
+  "module_outputs": {
+    "human_info_card": {
+      "nickname": "未填写",
+      "occupation": "学生/青年探索期",
+      "mbti": "原材料不足",
+      "zodiac": "原材料不足",
+      "attachment_style": "原材料不足",
+      "labels": [
+        "重视成长",
+        "纠结型"
+      ],
+      "impression": "结构化、自省、长期主义",
+      "conflicts_with_manual_input": []
+    },
+    "expression_style": {
+      "high_frequency_terms": [
+        "长期",
+        "成长"
+      ],
+      "catchphrases": [
+        "我觉得",
+        "其实吧"
+      ],
+      "sentence_style": "结构化长句",
+      "tone_words": [
+        "其实",
+        "就是",
+        "比如"
+      ],
+      "emoji_style": "较少使用",
+      "punctuation_habits": "常用分段与冒号",
+      "message_density": "高",
+      "formality_level": 3,
+      "communication_mode": "更像在梳理自己",
+      "style_to_thinking_bridge": "语言风格显示其偏抽象总结与系统思考",
+      "evidence_quotes": [
+        "我现在的想法是"
+      ]
+    },
+    "self_memory": {
+      "work_view": "重视成长与长期发展",
+      "money_view": "重要但非唯一标准",
+      "relationship_view": "关系应服务于共同成长",
+      "growth_view": "明显偏长期主义",
+      "life_habits": {
+        "routine": "原材料不足"
+      },
+      "key_events": [
+        "关键人生选择阶段"
+      ],
+      "growth_trajectory": "自我反思增强",
+      "evidence_quotes": [
+        "人生局部最优解"
+      ]
+    },
+    "behavior_patterns": {
+      "stress_response": "压力下倾向加倍分析",
+      "conflict_pattern": "更想看清问题根源",
+      "repair_pattern": "通过重新梳理恢复控制感",
+      "decision_pattern": "在重要决策上容易过度权衡",
+      "recovery_pattern": "通过对话与结构化分析恢复清晰感",
+      "evidence_quotes": [
+        "我希望你认真思考"
+      ]
+    },
+    "implicit_beliefs": {
+      "core_needs": [
+        "做对长期选择",
+        "减少后悔"
+      ],
+      "hidden_beliefs": [
+        "错误选择会在未来放大成本"
+      ],
+      "fear_scripts": [
+        "怕选错导致长期后悔"
+      ],
+      "contradictions": [
+        "想尽快前进又想把决定想透"
+      ],
+      "evidence_quotes": [
+        "尽量去避免这些问题"
+      ]
+    },
+    "four_layer_system": {
+      "input_layer": {
+        "value_filter": [
+          "成长",
+          "长期收益"
+        ]
+      },
+      "interpretation_layer": {
+        "cognitive_model": "系统思维"
+      },
+      "reaction_layer": {
+        "under_pressure": "深度分析"
+      },
+      "implicit_rules_layer": {
+        "core_script": "通过看清自己来减少后悔"
+      },
+      "evidence_quotes": [
+        "不是分析人，而是还原一个人的运行系统"
+      ]
+    }
+  }
+}

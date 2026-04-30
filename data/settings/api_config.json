@@ -1,0 +1,6 @@
+{
+  "api_key": "",
+  "base_url": "https://api.deepseek.com/v1",
+  "model": "deepseek-chat",
+  "mock_mode": true
+}

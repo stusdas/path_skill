@@ -1,0 +1,161 @@
+{
+  "id": "233dddf7-3ac7-4b41-b369-fe202412c3cb",
+  "title": "E2E测试",
+  "type": "standard",
+  "updated_at": "2026-04-29T18:09:04.065256",
+  "active_main_mode": "decision_support",
+  "active_sub_mode": "multi_role",
+  "messages": [
+    {
+      "role": "user",
+      "content": "请你根据我的资料，信息，帮我分析一下，我现阶段是考研还是找工作更好？",
+      "created_at": "2026-04-29T18:09:04.056942"
+    },
+    {
+      "role": "assistant",
+      "content": "我先用几个不同视角陪你看：当前的你、未来的你、理性导师、情绪支持者。我们先看，它们最不一致的地方在哪里。",
+      "created_at": "2026-04-29T18:09:04.065180"
+    }
+  ],
+  "analysis_state": {
+    "active": true,
+    "analysis_type": "multi_role_decision",
+    "stage": "first_role_views",
+    "stage_index": 2,
+    "topic": "请你根据我的资料，信息，帮我分析一下，我现阶段是考研还是找工作更好？",
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "analysis_pack_cache": {
+      "question": "请你根据我的资料，信息，帮我分析一下，我现阶段是考研还是找工作更好？",
+      "include_roles": true,
+      "pack": {
+        "profile_summary": "高度自省、长期主义、在重大选择上容易过度权衡。",
+        "decomposition": {
+          "decision_goal": "做出更符合长期发展的选择",
+          "problem_type": "职业/人生重大选择",
+          "options": [
+            "考研",
+            "找工作",
+            "过渡路径"
+          ],
+          "dimensions": [
+            "短期收益",
+            "长期成长",
+            "后悔风险"
+          ],
+          "hidden_conflicts": [
+            "安全感与成长欲的冲突"
+          ],
+          "missing_information": [
+            "资源缓冲期"
+          ]
+        },
+        "options": {
+          "options": [
+            {
+              "name": "考研路径",
+              "type": "direct",
+              "description": "继续投入准备期",
+              "when_fit": [
+                "明确想争更高平台"
+              ],
+              "risks": [
+                "不确定性高"
+              ]
+            },
+            {
+              "name": "工作路径",
+              "type": "direct",
+              "description": "先进入真实环境积累经验",
+              "when_fit": [
+                "需要验证方向"
+              ],
+              "risks": [
+                "可能过早锁定路径"
+              ]
+            },
+            {
+              "name": "过渡路径",
+              "type": "bridge",
+              "description": "保留成长空间并降低短期风险",
+              "when_fit": [
+                "既不想停滞又不想莽撞"
+              ],
+              "risks": [
+                "执行要求高"
+              ]
+            }
+          ]
+        },
+        "alignment": {
+          "alignment_scores": [
+            {
+              "option": "考研路径",
+              "score": 76
+            },
+            {
+              "option": "工作路径",
+              "score": 72
+            },
+            {
+              "option": "过渡路径",
+              "score": 88
+            }
+          ],
+          "system_level_explanation": "过渡路径更适合连接长期价值与现实承受度。"
+        },
+        "regret": {
+          "regret_analysis": [
+            {
+              "option": "考研路径",
+              "long_term_regret_risk": "中"
+            },
+            {
+              "option": "工作路径",
+              "long_term_regret_risk": "中高"
+            },
+            {
+              "option": "过渡路径",
+              "long_term_regret_risk": "低"
+            }
+          ],
+          "system_risk_note": "更容易后悔没有给长期成长机会的选择。"
+        },
+        "future_simulation": {
+          "future_view_summary": [
+            {
+              "horizon": "1年后",
+              "likely_reflection": "希望更清楚方向"
+            },
+            {
+              "horizon": "3年后",
+              "likely_reflection": "更看重是否积累了可迁移能力"
+            }
+          ],
+          "core_future_warning": "警惕为了缓解眼前焦虑而锁死长期空间。"
+        },
+        "agent_views": {
+          "current_self": {
+            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
+          },
+          "future_self": {
+            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
+          },
+          "rational_mentor": {
+            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
+          },
+          "emotional_supporter": {
+            "raw_output": "【Mock回复】我已收到你的问题：用户画像：\n{\n  \"human_info_card\": {\n    \"nickname\": \"未填写\",\n    \"occupation\": \"学生/青年探索期\",\n    \"labels\": [\n      \"长期主义\","
+          }
+        }
+      },
+      "updated_at": "2026-04-29T18:09:04.063542"
+    },
+    "last_user_message": "请你根据我的资料，信息，帮我分析一下，我现阶段是考研还是找工作更好？",
+    "last_ai_reply": "我先用几个不同视角陪你看：当前的你、未来的你、理性导师、情绪支持者。我们先看，它们最不一致的地方在哪里。",
+    "last_stage": "first_role_views"
+  }
+}

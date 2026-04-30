@@ -1,0 +1,13 @@
+{
+  "project_name": "lifepath_chat_upgrade",
+  "version": "0.2.0-enhanced",
+  "base": "old_project_thickness_plus_new_chat_architecture",
+  "enhancements": [
+    "stronger_prompts",
+    "deeper_decision_analysis",
+    "stronger_multi_role_dialogue",
+    "refined_frontend",
+    "competition_showcase_page",
+    "demo_script"
+  ]
+}

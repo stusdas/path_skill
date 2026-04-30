@@ -1,0 +1,35 @@
+{
+  "id": "f02469d1-ddd3-47be-9329-0c1299aed69b",
+  "title": "测试",
+  "type": "private",
+  "updated_at": "2026-04-29T17:50:10.064241",
+  "active_main_mode": "deep_understanding",
+  "active_sub_mode": "self_opposition",
+  "messages": [
+    {
+      "role": "user",
+      "content": "请你根据我的资料帮我分析考研还是找工作",
+      "created_at": "2026-04-29T17:50:10.063902"
+    },
+    {
+      "role": "assistant",
+      "content": "我先不急着替你选考研还是工作。这次我想试着把你心里那个总会把你拉回去的声音单独拿出来看看。它可能不是在故意阻碍你，而是在用一种很熟悉的方式保护你。",
+      "created_at": "2026-04-29T17:50:10.064204"
+    }
+  ],
+  "analysis_state": {
+    "active": true,
+    "analysis_type": "self_opposition_view",
+    "stage": "voice_expansion",
+    "stage_index": 2,
+    "topic": "请你根据我的资料帮我分析考研还是找工作",
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "请你根据我的资料帮我分析考研还是找工作",
+    "last_ai_reply": "我先不急着替你选考研还是工作。这次我想试着把你心里那个总会把你拉回去的声音单独拿出来看看。它可能不是在故意阻碍你，而是在用一种很熟悉的方式保护你。",
+    "last_stage": "voice_expansion"
+  }
+}

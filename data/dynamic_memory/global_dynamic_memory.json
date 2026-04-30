@@ -1,0 +1,16 @@
+[
+  {
+    "id": "dyn_1",
+    "summary": "最近多次提到在成长与稳定之间的拉扯。",
+    "type": "repeated_theme",
+    "confidence": "high",
+    "created_at": "2026-04-29T17:14:08.525136"
+  },
+  {
+    "id": "dyn_2",
+    "summary": "最近多次提到在成长、稳定与后悔风险之间反复拉扯。",
+    "type": "repeated_theme",
+    "confidence": "high",
+    "created_at": "2026-04-29T18:06:25.954996"
+  }
+]
