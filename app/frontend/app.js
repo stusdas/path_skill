@@ -423,7 +423,7 @@ async function sendMessage() {
   // Add AI bubble placeholder with loading indicator
   const aiRow = document.createElement("div"); aiRow.className = "message ai";
   const loadingText = state.primaryMode === '决策辅助' ? '正在进行深度决策分析，请稍候...' : '正在思考...';
-  aiRow.innerHTML = `<div class="avatar">AI</div><div class="bubble"><div style="display:flex;align-items:center;gap:10px;color:var(--muted);"><div class="spinner" style="width:14px;height:14px;border-width:2px;"></div><span>${loadingText}</span></div></div>`;
+  aiRow.innerHTML = `<div class="avatar">AI</div><div class="bubble"><div style="display:flex;align-items:center;gap:10px;color:var(--muted);"><span>${loadingText}</span></div></div>`;
   const aiBubble = aiRow.querySelector('.bubble');
   messageList.appendChild(aiRow);
   messageList.scrollTop = messageList.scrollHeight;
