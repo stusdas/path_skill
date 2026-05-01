@@ -1,9 +1,9 @@
 {
-  "id": "8a5635ed-dc1e-4ff6-ab3d-75438e56888f",
+  "id": "733724b9-b492-4a5a-ab4f-d767b87fd616",
   "title": "新的会话",
   "type": "standard",
-  "updated_at": "2026-04-30T09:53:56.744407",
-  "active_main_mode": "decision_support",
+  "updated_at": "2026-05-01T04:18:29.333384",
+  "active_main_mode": "normal",
   "active_sub_mode": null,
   "messages": [],
   "analysis_state": {

@@ -1,0 +1,38 @@
+{
+  "id": "29fad656-2ebd-4b57-a0c6-a1d8cc10d0a1",
+  "title": "关于考研和工作的纠结",
+  "type": "standard",
+  "updated_at": "2026-05-01T12:33:07.585718",
+  "active_main_mode": "normal",
+  "active_sub_mode": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "我最近在纠结是找工作还是考研",
+      "avatar": null,
+      "created_at": "2026-05-01T12:32:51.374477"
+    },
+    {
+      "role": "assistant",
+      "content": "嗯，这个选择确实挺让人头疼的——考研和找工作，两条完全不同的路，各有各的吸引力，也各有各的不确定。\n\n你现在更卡的是哪一部分？是不知道哪个更适合自己，还是其实心里有倾向但不敢下决定？",
+      "avatar": null,
+      "created_at": "2026-05-01T12:33:06.288093"
+    }
+  ],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "我最近在纠结是找工作还是考研",
+    "last_ai_reply": "嗯，这个选择确实挺让人头疼的——考研和找工作，两条完全不同的路，各有各的吸引力，也各有各的不确定。\n\n你现在更卡的是哪一部分？是不知道哪个更适合自己，还是其实心里有倾向但不敢下决定？",
+    "last_stage": null
+  },
+  "is_pinned": false
+}

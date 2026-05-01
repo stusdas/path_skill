@@ -39,6 +39,26 @@ class LLMClient:
         resp.raise_for_status()
         return resp.json()['choices'][0]['message']['content']
 
+    async def async_complete(self, system_prompt: str, user_prompt: str, temperature: float = 0.3) -> str:
+        if self.mock:
+            return self._mock_response(system_prompt, user_prompt)
+        if not self.api_key:
+            raise ValueError('请先提供 API Key')
+        url = self.base_url.rstrip('/') + '/chat/completions'
+        headers = {'Authorization': f'Bearer {self.api_key}', 'Content-Type': 'application/json'}
+        payload = {
+            'model': self.model,
+            'messages': [
+                {'role': 'system', 'content': system_prompt},
+                {'role': 'user', 'content': user_prompt},
+            ],
+            'temperature': temperature,
+        }
+        async with httpx.AsyncClient(timeout=120.0) as client:
+            resp = await client.post(url, headers=headers, json=payload)
+            resp.raise_for_status()
+            return resp.json()['choices'][0]['message']['content']
+
     async def async_complete_stream(self, system_prompt: str, user_prompt: str, temperature: float = 0.3):
         if self.mock:
             async for chunk in self._mock_stream(system_prompt, user_prompt):

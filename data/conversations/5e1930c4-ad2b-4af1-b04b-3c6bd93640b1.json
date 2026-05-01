@@ -2,19 +2,37 @@
   "id": "5e1930c4-ad2b-4af1-b04b-3c6bd93640b1",
   "title": "新的会话",
   "type": "standard",
-  "updated_at": "2026-04-30T09:51:54.341627",
+  "updated_at": "2026-05-01T05:31:41.413248",
   "active_main_mode": "deep_understanding",
   "active_sub_mode": null,
-  "messages": [],
+  "messages": [
+    {
+      "role": "user",
+      "content": "111",
+      "avatar": null,
+      "created_at": "2026-05-01T05:31:27.611060"
+    },
+    {
+      "role": "assistant",
+      "content": "嗯，我看到你发了一个“111”。\n\n我先不急着问这代表什么。有时候人发一个简单的数字，可能是在测试我还在不在，也可能只是还没想好怎么开口。\n\n所以我想先确认一件事——你现在是想继续聊之前那个“成长和安全感打架”的话题，还是今天有别的想说的？\n\n不用急着组织语言，随便说就行。",
+      "avatar": null,
+      "created_at": "2026-05-01T05:31:41.411834"
+    }
+  ],
   "analysis_state": {
-    "active": false,
-    "analysis_type": null,
-    "stage": null,
-    "stage_index": 0,
-    "topic": null,
+    "active": true,
+    "analysis_type": "deep_understanding",
+    "stage": "inner_tension_identification",
+    "stage_index": 2,
+    "topic": "111",
     "waiting_for_user": false,
     "card_emitted": false,
     "slot_fill": {}
   },
-  "short_term_memory": {}
+  "short_term_memory": {
+    "last_user_message": "111",
+    "last_ai_reply": "嗯，我看到你发了一个“111”。\n\n我先不急着问这代表什么。有时候人发一个简单的数字，可能是在测试我还在不在，也可能只是还没想好怎么开口。\n\n所以我想先确认一件事——你现在是想继续聊之前那个“成长和安全感打架”的话题，还是今天有别的想说的？\n\n不用急着组织语言，随便说就行。",
+    "last_stage": "inner_tension_identification"
+  },
+  "is_pinned": false
 }

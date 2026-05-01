@@ -2,9 +2,9 @@
   "id": "ab67da9e-7bc3-4ddf-ab99-65a413ec6489",
   "title": "新的会话",
   "type": "standard",
-  "updated_at": "2026-05-01T02:36:51.362926",
-  "active_main_mode": "decision_support",
-  "active_sub_mode": "multi_role",
+  "updated_at": "2026-05-01T04:14:38.747555",
+  "active_main_mode": "deep_understanding",
+  "active_sub_mode": "self_opposition",
   "messages": [
     {
       "role": "user",

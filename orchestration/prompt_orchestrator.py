@@ -17,3 +17,5 @@ class PromptOrchestrator:
         else:
             mode_prompt = load_prompt('chat/normal_chat_reply.md')
         return persona + '\n\n' + mode_prompt
+    def get_title_generator_prompt(self):
+        return load_prompt('chat/session_title_generator.md')

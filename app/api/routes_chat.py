@@ -1,5 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from core.chat_types import NewConversationRequest, SendMessageRequest, ToggleModeRequest, UpdateConversationTypeRequest
+from core.chat_types import (
+    NewConversationRequest, SendMessageRequest, ToggleModeRequest, 
+    UpdateConversationTypeRequest, RenameConversationRequest, TogglePinRequest
+)
 from controllers.conversation_controller import ConversationController
 
 router = APIRouter()
@@ -27,6 +30,19 @@ def toggle_mode(payload: ToggleModeRequest):
 @router.post('/conversations/update-type')
 def update_type(payload: UpdateConversationTypeRequest):
     return controller._export_conversation(controller.update_type(payload))
+
+@router.post('/conversations/rename-title')
+def rename_conversation(payload: RenameConversationRequest):
+    return controller._export_conversation(controller.rename(payload))
+
+@router.delete('/conversations/{conversation_id}')
+def delete_conversation(conversation_id: str):
+    success = controller.delete(conversation_id)
+    return {"success": success}
+
+@router.post('/conversations/pin')
+def toggle_pin(payload: TogglePinRequest):
+    return controller._export_conversation(controller.toggle_pin(payload))
 
 from fastapi.responses import StreamingResponse
 

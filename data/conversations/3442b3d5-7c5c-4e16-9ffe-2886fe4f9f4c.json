@@ -1,0 +1,49 @@
+{
+  "id": "3442b3d5-7c5c-4e16-9ffe-2886fe4f9f4c",
+  "title": "新的会话",
+  "type": "standard",
+  "updated_at": "2026-05-01T04:19:40.932059",
+  "active_main_mode": "normal",
+  "active_sub_mode": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "我现在是考研好呢？还是工作好呢？",
+      "avatar": null,
+      "created_at": "2026-05-01T04:18:42.335904"
+    },
+    {
+      "role": "assistant",
+      "content": "嗯，这个问题确实挺重的，不是随便选一个就能过去的那种。\n\n我先不急着帮你分析哪个更好——因为我知道你心里其实已经想过很多遍了。你现在更卡的是：**怕选完之后，自己接受不了那个结果？**",
+      "avatar": null,
+      "created_at": "2026-05-01T04:18:55.718296"
+    },
+    {
+      "role": "user",
+      "content": "我觉得工作好",
+      "avatar": null,
+      "created_at": "2026-05-01T04:19:28.043820"
+    },
+    {
+      "role": "assistant",
+      "content": "嗯，你心里其实已经有倾向了。\n\n那如果现在选工作的话——你脑子里冒出来的第一个\"但是\"是什么？",
+      "avatar": null,
+      "created_at": "2026-05-01T04:19:40.931068"
+    }
+  ],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "我觉得工作好",
+    "last_ai_reply": "嗯，你心里其实已经有倾向了。\n\n那如果现在选工作的话——你脑子里冒出来的第一个\"但是\"是什么？",
+    "last_stage": null
+  }
+}

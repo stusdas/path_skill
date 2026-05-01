@@ -2,7 +2,7 @@
   "id": "e89a58e7-41a9-466f-916d-ee7da9be26e0",
   "title": "新的会话",
   "type": "standard",
-  "updated_at": "2026-05-01T03:46:27.004454",
+  "updated_at": "2026-05-01T11:27:51.414542",
   "active_main_mode": "decision_support",
   "active_sub_mode": "multi_role",
   "messages": [
@@ -188,11 +188,11 @@
     }
   ],
   "analysis_state": {
-    "active": true,
-    "analysis_type": "multi_role_decision",
-    "stage": "role_divergence",
-    "stage_index": 3,
-    "topic": "我现在是考研好呢？还是工作好呢？",
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
     "waiting_for_user": false,
     "card_emitted": false,
     "slot_fill": {}
@@ -316,5 +316,6 @@
     "last_user_message": "hello",
     "last_ai_reply": "嗯，我听到了。\n\n你刚才听完了那四个声音的讨论，然后只说了“hello”——这个动作本身挺有意思的。它像是一个小小的暂停键，或者一个试探：“我听到了你们的分析，但我想先确认一下，这里还安全吗？”\n\n其实这四个声音吵到最后，核心冲突已经浮出来了——不是“考研还是工作”，而是 **“我能不能先允许自己动一下，哪怕结果不完美”**。当下的你和理性的你都在说“先工作，先动起来”，未来的你也在点头，但情绪支持者拦了一下，说“你还没准备好面对不完美的自我否定，先做个实验吧”。\n\n你看，他们其实都同意一个方向——**别继续分析了**。只是步子大小有分歧。\n\n现在你说了“hello”，我想把选择权交回给你：你是想顺着刚才那个“先动起来”的方向，聊聊怎么迈出第一步？还是想先喘口气，聊聊这种“明明知道该动，却还是想再想想”的感觉？",
     "last_stage": "role_divergence"
-  }
+  },
+  "is_pinned": false
 }

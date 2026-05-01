@@ -8,11 +8,13 @@ from core.chat_types import (
     SendMessageRequest,
     DynamicMemoryItem,
     UpdateConversationTypeRequest,
+    RenameConversationRequest,
+    TogglePinRequest,
 )
 from core.utils import now_iso, dump_json, load_json
 from core.config import APP_STATE_PATH, STATIC_PROFILE_PATH
 from core.llm_client import LLMClient
-from memory.conversation_store import list_conversations, load_conversation, save_conversation
+from memory.conversation_store import list_conversations, load_conversation, save_conversation, delete_conversation
 from memory.user_memory_store import load_user_memory
 from memory.dynamic_memory_store import save_dynamic_memory
 from memory.snapshot_store import save_snapshot
@@ -77,6 +79,50 @@ class ConversationController:
         conv.updated_at = now_iso()
         save_conversation(conv)
         return conv
+
+    def rename(self, payload: RenameConversationRequest):
+        conv = load_conversation(payload.conversation_id)
+        conv.title = payload.title
+        conv.updated_at = now_iso()
+        save_conversation(conv)
+        return conv
+
+    def delete(self, conversation_id: str):
+        return delete_conversation(conversation_id)
+
+    def toggle_pin(self, payload: TogglePinRequest):
+        conv = load_conversation(payload.conversation_id)
+        conv.is_pinned = payload.is_pinned
+        # We don't necessarily update updated_at for pinning to keep temporal order
+        save_conversation(conv)
+        return conv
+
+    async def _maybe_auto_rename(self, conv: Conversation, llm: LLMClient, message_text: str):
+        # Only rename if title is default
+        if conv.title not in ['新的会话', '不留痕聊天', 'New Conversation']:
+            return
+        
+        # Don't rename private chats if they are meant to stay private
+        if conv.type == 'private':
+            return
+
+        system_prompt = self.prompt_orchestrator.get_title_generator_prompt()
+        user_prompt = f"用户的第一条消息是：\"{message_text}\"\n请根据这条消息生成一个简短的标题。"
+        
+        try:
+            new_title = await llm.async_complete(system_prompt, user_prompt, temperature=0.7)
+            new_title = new_title.strip().strip('"').strip('【').strip('】').split('\n')[0]
+            # Clean up: sometimes LLM adds "标题：" prefix
+            if "：" in new_title[:5]:
+                new_title = new_title.split("：", 1)[1]
+            if ":" in new_title[:5]:
+                new_title = new_title.split(":", 1)[1]
+                
+            if new_title and len(new_title) > 1:
+                conv.title = new_title[:30] # Limit length
+                save_conversation(conv)
+        except Exception:
+            pass # Silent fail for auto-rename
 
     def _load_static_profile(self):
         return load_json(STATIC_PROFILE_PATH, default={}) or {}
@@ -192,6 +238,9 @@ class ConversationController:
                 if not any(x.summary == summary for x in user_memory.dynamic_memory):
                     user_memory.dynamic_memory.append(DynamicMemoryItem(id=f'dyn_{len(user_memory.dynamic_memory)+1}', summary=summary, type='repeated_theme', confidence='high', created_at=now_iso()))
                     save_dynamic_memory(user_memory.dynamic_memory)
+
+            if len(conv.messages) <= 3: # Only try on first round
+                await self._maybe_auto_rename(conv, llm, payload.message)
 
             conv.updated_at = now_iso()
             save_conversation(conv)

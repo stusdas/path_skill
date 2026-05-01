@@ -1,0 +1,38 @@
+{
+  "id": "4e6d38a3-f271-44ff-9683-9f6681afd81d",
+  "title": "关于职业发展的讨论",
+  "type": "standard",
+  "updated_at": "2026-05-01T05:37:35.999691",
+  "active_main_mode": "normal",
+  "active_sub_mode": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello, I want to talk about career development.",
+      "avatar": null,
+      "created_at": "2026-05-01T05:37:11.725449"
+    },
+    {
+      "role": "assistant",
+      "content": "嗨，你好呀。想聊聊职业发展——听起来这是个挺大的话题。你现在是正面临某个具体的选择，还是想先聊聊大方向上的困惑？",
+      "avatar": null,
+      "created_at": "2026-05-01T05:37:34.167666"
+    }
+  ],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "Hello, I want to talk about career development.",
+    "last_ai_reply": "嗨，你好呀。想聊聊职业发展——听起来这是个挺大的话题。你现在是正面临某个具体的选择，还是想先聊聊大方向上的困惑？",
+    "last_stage": null
+  },
+  "is_pinned": false
+}

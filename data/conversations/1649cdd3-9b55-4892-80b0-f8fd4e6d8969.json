@@ -1,0 +1,38 @@
+{
+  "id": "1649cdd3-9b55-4892-80b0-f8fd4e6d8969",
+  "title": "关于考研和工作的纠结",
+  "type": "standard",
+  "updated_at": "2026-05-01T12:33:30.322055",
+  "active_main_mode": "deep_understanding",
+  "active_sub_mode": "self_opposition",
+  "messages": [
+    {
+      "role": "user",
+      "content": "我最近在纠结是找工作还是考研",
+      "avatar": null,
+      "created_at": "2026-05-01T12:33:25.478518"
+    },
+    {
+      "role": "assistant",
+      "content": "嗯，我听到了。\n\n我们先不急着分析这两个选项本身。我想先请你做一件事——试着听听你心里那个声音。\n\n那个在你每次想要认真考虑一个方向时，总会冒出来的声音。它可能很熟悉，甚至有点烦人，但它一定在说些什么。\n\n你试着感受一下，当你想到“考研”或者“找工作”这两个词的时候，你脑子里最先蹦出来的那句完整的话是什么？不是分析利弊，就是那句最直接、最本能的话。\n\n比如，它可能会说：“万一选错了怎么办？”或者“你现在根本没准备好。”\n\n你听到的那句是什么？",
+      "avatar": null,
+      "created_at": "2026-05-01T12:33:29.005724"
+    }
+  ],
+  "analysis_state": {
+    "active": true,
+    "analysis_type": "self_opposition_view",
+    "stage": "voice_expansion",
+    "stage_index": 2,
+    "topic": "我最近在纠结是找工作还是考研",
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "我最近在纠结是找工作还是考研",
+    "last_ai_reply": "嗯，我听到了。\n\n我们先不急着分析这两个选项本身。我想先请你做一件事——试着听听你心里那个声音。\n\n那个在你每次想要认真考虑一个方向时，总会冒出来的声音。它可能很熟悉，甚至有点烦人，但它一定在说些什么。\n\n你试着感受一下，当你想到“考研”或者“找工作”这两个词的时候，你脑子里最先蹦出来的那句完整的话是什么？不是分析利弊，就是那句最直接、最本能的话。\n\n比如，它可能会说：“万一选错了怎么办？”或者“你现在根本没准备好。”\n\n你听到的那句是什么？",
+    "last_stage": "voice_expansion"
+  },
+  "is_pinned": false
+}

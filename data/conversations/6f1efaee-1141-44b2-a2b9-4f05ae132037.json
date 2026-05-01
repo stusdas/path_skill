@@ -1,0 +1,37 @@
+{
+  "id": "6f1efaee-1141-44b2-a2b9-4f05ae132037",
+  "title": "新的会话",
+  "type": "standard",
+  "updated_at": "2026-05-01T04:52:14.749725",
+  "active_main_mode": "normal",
+  "active_sub_mode": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "Test Pin",
+      "avatar": null,
+      "created_at": "2026-05-01T04:52:07.180025"
+    },
+    {
+      "role": "assistant",
+      "content": "收到，Test Pin 已确认。看起来你是在测试系统是否在线，或者想看看我有没有记住之前的对话。\n\n我在这呢。有什么想聊的，或者想继续之前的话题，随时说。",
+      "avatar": null,
+      "created_at": "2026-05-01T04:52:14.748830"
+    }
+  ],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "Test Pin",
+    "last_ai_reply": "收到，Test Pin 已确认。看起来你是在测试系统是否在线，或者想看看我有没有记住之前的对话。\n\n我在这呢。有什么想聊的，或者想继续之前的话题，随时说。",
+    "last_stage": null
+  }
+}

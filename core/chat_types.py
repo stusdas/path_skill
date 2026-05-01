@@ -46,6 +46,7 @@ class Conversation(BaseModel):
     messages: List[ChatMessage] = Field(default_factory=list)
     analysis_state: AnalysisState = Field(default_factory=AnalysisState)
     short_term_memory: Dict[str, Any] = Field(default_factory=dict)
+    is_pinned: bool = False
 
 class UserMemory(BaseModel):
     static_profile_summary: str = '尚未建立长期画像。'
@@ -86,3 +87,11 @@ class SaveSettingsRequest(BaseModel):
     base_url: str = 'https://api.deepseek.com/v1'
     model: str = 'deepseek-chat'
     mock_mode: bool = False
+
+class RenameConversationRequest(BaseModel):
+    conversation_id: str
+    title: str
+
+class TogglePinRequest(BaseModel):
+    conversation_id: str
+    is_pinned: bool
