@@ -186,8 +186,10 @@ textarea {
 }
 
 .avatar {
-  width: 36px;
+  min-width: 36px;
+  width: fit-content;
   height: 36px;
+  padding: 0 8px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -196,6 +198,7 @@ textarea {
   font-size: 12px;
   flex-shrink: 0;
   background: #eee;
+  white-space: nowrap;
 }
 
 .message.ai .avatar { background: #f0ede6; color: #555; }
@@ -213,6 +216,21 @@ textarea {
 
 .message.user .bubble {
   background: #f9f7f2;
+}
+
+.agent-view-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.agent-item {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.agent-item strong {
+  color: var(--accent);
 }
 
 /* Modals */

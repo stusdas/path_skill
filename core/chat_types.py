@@ -9,6 +9,7 @@ MessageRole = Literal['user', 'assistant', 'system', 'card']
 class ChatMessage(BaseModel):
     role: MessageRole
     content: Any
+    avatar: Optional[str] = None
     created_at: Optional[str] = None
 
 class AnalysisState(BaseModel):
@@ -67,7 +68,7 @@ class SendMessageRequest(BaseModel):
     api_key: str = ''
     base_url: str = 'https://api.deepseek.com/v1'
     model: str = 'deepseek-chat'
-    mock: bool = True
+    mock: bool = False
     main_mode: Optional[MainMode] = None
     sub_mode: SubMode = None
 
@@ -84,4 +85,4 @@ class SaveSettingsRequest(BaseModel):
     api_key: str = ''
     base_url: str = 'https://api.deepseek.com/v1'
     model: str = 'deepseek-chat'
-    mock_mode: bool = True
+    mock_mode: bool = False

@@ -1,0 +1,35 @@
+{
+  "id": "62791ea3-af19-46eb-8645-0745f8ed15ae",
+  "title": "新的会话",
+  "type": "standard",
+  "updated_at": "2026-04-30T18:54:25.632812",
+  "active_main_mode": "decision_support",
+  "active_sub_mode": "multi_role",
+  "messages": [
+    {
+      "role": "user",
+      "content": "你好",
+      "created_at": "2026-04-30T18:08:00.374198"
+    },
+    {
+      "role": "assistant",
+      "content": "这个问题对你来说，可能已经不只是“考研还是工作”这么简单了。我先不急着替你下判断。你现在更纠结的是未来发展、现实压力，还是你还没想清自己到底更想要哪种生活状态？",
+      "created_at": "2026-04-30T18:08:01.227400"
+    }
+  ],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "你好",
+    "last_ai_reply": "这个问题对你来说，可能已经不只是“考研还是工作”这么简单了。我先不急着替你下判断。你现在更纠结的是未来发展、现实压力，还是你还没想清自己到底更想要哪种生活状态？",
+    "last_stage": null
+  }
+}

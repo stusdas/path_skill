@@ -1,0 +1,49 @@
+{
+  "id": "ab67da9e-7bc3-4ddf-ab99-65a413ec6489",
+  "title": "新的会话",
+  "type": "standard",
+  "updated_at": "2026-05-01T02:36:51.362926",
+  "active_main_mode": "decision_support",
+  "active_sub_mode": "multi_role",
+  "messages": [
+    {
+      "role": "user",
+      "content": "我很难过最近",
+      "avatar": null,
+      "created_at": "2026-05-01T02:35:03.548977"
+    },
+    {
+      "role": "assistant",
+      "content": "我听到了，最近很难过。\n\n我们先不急着分析原因，也不急着找解决办法。我想先帮你听听，你心里那个声音——那个在你难过时，可能会悄悄说“你不该这么难过”或者“这点事有什么好难过的”的声音——它在说什么？\n\n你试着感受一下，那个声音，它会怎么开口？",
+      "avatar": null,
+      "created_at": "2026-05-01T02:35:06.099325"
+    },
+    {
+      "role": "user",
+      "content": "我最近觉得自己很差劲",
+      "avatar": null,
+      "created_at": "2026-05-01T02:35:16.050394"
+    },
+    {
+      "role": "assistant",
+      "content": "我听到了。你说“觉得自己很差劲”的时候，那个声音其实已经出来了——它不需要我帮你找，它就在你刚才那句话里。\n\n我们先把它具体化一点。你心里那个声音，它说“我很差劲”的时候，后面通常会跟一句什么？比如：\n\n- “因为我没有做到……”\n- “因为别人都在……”\n- “因为我又在同一个地方卡住了……”\n\n你试着补一下，它完整的那句话是什么？",
+      "avatar": null,
+      "created_at": "2026-05-01T02:35:18.938628"
+    }
+  ],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "我最近觉得自己很差劲",
+    "last_ai_reply": "我听到了。你说“觉得自己很差劲”的时候，那个声音其实已经出来了——它不需要我帮你找，它就在你刚才那句话里。\n\n我们先把它具体化一点。你心里那个声音，它说“我很差劲”的时候，后面通常会跟一句什么？比如：\n\n- “因为我没有做到……”\n- “因为别人都在……”\n- “因为我又在同一个地方卡住了……”\n\n你试着补一下，它完整的那句话是什么？",
+    "last_stage": "protection_target"
+  }
+}

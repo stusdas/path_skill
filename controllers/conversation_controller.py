@@ -141,55 +141,70 @@ class ConversationController:
         route = self.mode_router.route(conv.active_main_mode, conv.active_sub_mode, conv.analysis_state, payload.message)
         conv.analysis_state = self.analysis_machine.initialize_if_needed(conv.analysis_state, conv.active_main_mode, conv.active_sub_mode, payload.message[:80])
         context_bundle = self.context_selector.select(conv.active_main_mode, conv.active_sub_mode, user_memory, conv)
-        
-        # We can't build analysis_pack with streaming easily if it's a separate LLM call,
-        # but let's keep it sync for now or make it async.
-        # Actually, DecisionPackBuilder.build is sync. Let's make it work.
-        analysis_pack = self._maybe_build_analysis_pack(conv, llm, payload.message)
+        try:
+            import asyncio
+            # Run the synchronous DecisionPackBuilder in a separate thread to avoid blocking the event loop
+            analysis_pack = await asyncio.to_thread(self._maybe_build_analysis_pack, conv, llm, payload.message)
 
-        system_prompt = self.prompt_orchestrator.choose_reply_prompt(conv.active_main_mode, conv.active_sub_mode)
-        user_prompt = self._build_user_prompt(payload.message, context_bundle, conv, analysis_pack=analysis_pack)
-        
-        full_reply = ""
-        async for chunk in llm.async_complete_stream(system_prompt, user_prompt, temperature=0.25):
-            full_reply += chunk
-            yield json.dumps({"type": "text", "content": chunk}, ensure_ascii=False) + "\n"
+            system_prompt = self.prompt_orchestrator.choose_reply_prompt(conv.active_main_mode, conv.active_sub_mode)
+            user_prompt = self._build_user_prompt(payload.message, context_bundle, conv, analysis_pack=analysis_pack)
+            
+            if analysis_pack and analysis_pack.get('agent_views'):
+                agent_mapping = {
+                    "current_self": "当下的你",
+                    "future_self": "未来的你",
+                    "rational_mentor": "理性导师",
+                    "emotional_supporter": "情绪支持者"
+                }
+                for key, content in analysis_pack['agent_views'].items():
+                    if content:
+                        agent_name = agent_mapping.get(key, key)
+                        msg = ChatMessage(role='assistant', content=content, avatar=agent_name, created_at=now_iso())
+                        conv.messages.append(msg)
+                        yield json.dumps({"type": "agent_bubble", "agent_name": agent_name, "content": content}, ensure_ascii=False) + "\n"
 
-        reply_text = full_reply
-        conv.messages.append(ChatMessage(role='assistant', content=reply_text, created_at=now_iso()))
+            full_reply = ""
+            async for chunk in llm.async_complete_stream(system_prompt, user_prompt, temperature=0.25):
+                full_reply += chunk
+                yield json.dumps({"type": "text", "content": chunk}, ensure_ascii=False) + "\n"
 
-        conv.analysis_state = self.analysis_machine.advance(conv.analysis_state)
-        card = self.card_controller.maybe_emit(conv.analysis_state, analysis_pack=analysis_pack)
-        if card:
-            conv.messages.append(ChatMessage(role='card', content=card, created_at=now_iso()))
+            reply_text = full_reply
+            conv.messages.append(ChatMessage(role='assistant', content=reply_text, created_at=now_iso()))
 
-        update_short_term_memory(conv)
+            conv.analysis_state = self.analysis_machine.advance(conv.analysis_state)
+            card = self.card_controller.maybe_emit(conv.analysis_state, analysis_pack=analysis_pack)
+            if card:
+                conv.messages.append(ChatMessage(role='card', content=card, created_at=now_iso()))
 
-        latest_text = payload.message
-        if any(k in latest_text for k in ['焦虑', '怕', '担心', '纠结', '选错', '后悔']):
-            user_memory.current_snapshot.emotion_state = 'anxious'
-            user_memory.current_snapshot.decision_state = 'repeatedly_stuck'
-            user_memory.current_snapshot.life_phase = 'turning_point'
-            user_memory.current_snapshot.confidence = 0.78
-            user_memory.current_snapshot.updated_at = now_iso()
-            save_snapshot(user_memory.current_snapshot)
+            update_short_term_memory(conv)
 
-        if conv.type != 'private' and any(k in latest_text for k in ['考研', '找工作', '成长', '稳定', '纠结', '后悔']):
-            summary = '最近多次提到在成长、稳定与后悔风险之间反复拉扯。'
-            if not any(x.summary == summary for x in user_memory.dynamic_memory):
-                user_memory.dynamic_memory.append(DynamicMemoryItem(id=f'dyn_{len(user_memory.dynamic_memory)+1}', summary=summary, type='repeated_theme', confidence='high', created_at=now_iso()))
-                save_dynamic_memory(user_memory.dynamic_memory)
+            latest_text = payload.message
+            if any(k in latest_text for k in ['焦虑', '怕', '担心', '纠结', '选错', '后悔']):
+                user_memory.current_snapshot.emotion_state = 'anxious'
+                user_memory.current_snapshot.decision_state = 'repeatedly_stuck'
+                user_memory.current_snapshot.life_phase = 'turning_point'
+                user_memory.current_snapshot.confidence = 0.78
+                user_memory.current_snapshot.updated_at = now_iso()
+                save_snapshot(user_memory.current_snapshot)
 
-        conv.updated_at = now_iso()
-        save_conversation(conv)
-        dump_json(APP_STATE_PATH, {'last_opened_conversation_id': conv.id})
-        
-        yield json.dumps({
-            "type": "final",
-            "conversation": self._export_conversation(conv),
-            "reply": reply_text,
-            "card": card,
-            "suggest_deeper": route['suggest_deeper'],
-            "user_memory": user_memory.model_dump(),
-            "analysis_pack": analysis_pack,
-        }, ensure_ascii=False) + "\n"
+            if conv.type != 'private' and any(k in latest_text for k in ['考研', '找工作', '成长', '稳定', '纠结', '后悔']):
+                summary = '最近多次提到在成长、稳定与后悔风险之间反复拉扯。'
+                if not any(x.summary == summary for x in user_memory.dynamic_memory):
+                    user_memory.dynamic_memory.append(DynamicMemoryItem(id=f'dyn_{len(user_memory.dynamic_memory)+1}', summary=summary, type='repeated_theme', confidence='high', created_at=now_iso()))
+                    save_dynamic_memory(user_memory.dynamic_memory)
+
+            conv.updated_at = now_iso()
+            save_conversation(conv)
+            dump_json(APP_STATE_PATH, {'last_opened_conversation_id': conv.id})
+            
+            yield json.dumps({
+                "type": "final",
+                "conversation": self._export_conversation(conv),
+                "reply": reply_text,
+                "card": card,
+                "suggest_deeper": route['suggest_deeper'],
+                "user_memory": user_memory.model_dump(),
+                "analysis_pack": analysis_pack,
+            }, ensure_ascii=False) + "\n"
+        except Exception as e:
+            yield json.dumps({"type": "error", "message": f"流式回复异常: {str(e)}"}, ensure_ascii=False) + "\n"

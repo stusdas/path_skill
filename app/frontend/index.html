@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LifePath AI - 深度生命导向系统</title>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
+
 <body>
   <div class="app-container" id="appShell">
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="brand" style="margin-bottom: 32px;">LifePath</div>
-      
+
       <div style="margin-bottom: 24px;">
         <button class="btn btn-primary" id="newThreadBtn" style="width: 100%; justify-content: center;">
           <span>+</span> 新建会话
         </button>
       </div>
 
-      <div class="section-label" style="font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">最近记录</div>
+      <div class="section-label"
+        style="font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+        最近记录</div>
       <div class="conversations" style="flex: 1; overflow-y: auto;">
         <!-- Conversations will be injected here -->
       </div>
@@ -64,7 +68,11 @@
           <div class="input-actions">
             <div style="font-size: 12px; color: var(--muted);" id="sessionTypeTip">标准会话</div>
             <button class="btn btn-primary btn-icon" id="sendBtn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
             </button>
           </div>
         </div>
@@ -75,27 +83,33 @@
   <!-- Mode Dropdown (Floating) -->
   <div id="modeDropdown" class="modal-overlay" style="background: transparent;">
     <div class="modal" style="position: absolute; top: 80px; left: 332px; width: 400px; padding: 20px;">
-      <div class="section-label" style="font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600;">选择模式</div>
+      <div class="section-label" style="font-size: 12px; color: var(--muted); margin-bottom: 12px; font-weight: 600;">
+        选择模式</div>
       <div class="mode-menu">
         <div class="mode-primary-item" data-primary="普通聊天">
-          <button class="btn" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;" data-primary-select="普通聊天">
+          <button class="btn" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;"
+            data-primary-select="普通聊天">
             <strong>普通聊天</strong> - 逐步了解现状
           </button>
         </div>
         <div class="mode-primary-item" data-primary="深度理解">
-          <button class="btn" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;" data-primary-select="深度理解">
+          <button class="btn" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;"
+            data-primary-select="深度理解">
             <strong>深度理解</strong> - 拆解情绪与模式
           </button>
           <div style="padding-left: 20px;">
-            <button class="btn mode-subitem" data-capability="自我对立视角" data-parent="深度理解" style="font-size: 12px; margin-bottom: 4px;">开启：自我对立视角</button>
+            <button class="btn mode-subitem" data-capability="自我对立视角" data-parent="深度理解"
+              style="font-size: 12px; margin-bottom: 4px;">开启：自我对立视角</button>
           </div>
         </div>
         <div class="mode-primary-item" data-primary="决策辅助">
-          <button class="btn" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;" data-primary-select="决策辅助">
+          <button class="btn" style="width: 100%; justify-content: flex-start; margin-bottom: 8px;"
+            data-primary-select="决策辅助">
             <strong>决策辅助</strong> - 比较路径与代价
           </button>
           <div style="padding-left: 20px;">
-            <button class="btn mode-subitem" data-capability="多角色聊天" data-parent="决策辅助" style="font-size: 12px; margin-bottom: 4px;">开启：多角色聊天</button>
+            <button class="btn mode-subitem" data-capability="多角色聊天" data-parent="决策辅助"
+              style="font-size: 12px; margin-bottom: 4px;">开启：多角色聊天</button>
           </div>
         </div>
       </div>
@@ -131,20 +145,17 @@
             <label>Model</label>
             <input type="text" id="modelInput" placeholder="deepseek-chat">
           </div>
-          <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <div style="font-weight: 600;">Mock 模式</div>
-              <div style="font-size: 12px; color: var(--muted);" id="mockToggleDesc">开启后不消耗额度</div>
-            </div>
-            <button class="btn" id="mockToggleBtn">切换</button>
-          </div>
-          <button class="btn btn-primary" id="saveSettingsBtn" style="width: 100%; justify-content: center; margin-top: 8px;">保存配置</button>
+
+
+          <button class="btn btn-primary" id="saveSettingsBtn"
+            style="width: 100%; justify-content: center; margin-top: 8px;">保存配置</button>
         </div>
 
         <!-- Section 2: File Upload -->
         <div class="settings-section">
           <div class="settings-section-title">📎 资料上传</div>
-          <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">上传你的个人资料（简历、日记、自述等），系统将自动分析并建立你的长期画像。</p>
+          <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">上传你的个人资料（简历、日记、自述等），系统将自动分析并建立你的长期画像。
+          </p>
           <button class="btn" id="uploadTriggerBtn" style="width: 100%; justify-content: center; margin-bottom: 16px;">
             选择文件并上传
           </button>
@@ -216,7 +227,8 @@
   </div>
 
   <!-- Toast / Capability Tip -->
-  <div id="capabilityTip" class="modal-overlay" style="background: transparent; pointer-events: none; align-items: flex-end; padding: 40px;">
+  <div id="capabilityTip" class="modal-overlay"
+    style="background: transparent; pointer-events: none; align-items: flex-end; padding: 40px;">
     <div class="bubble" style="pointer-events: auto; background: var(--accent); color: #fff; max-width: 400px;">
       <div id="capabilityTipText"></div>
       <div id="capabilityTipActions" style="margin-top: 8px;"></div>
@@ -224,6 +236,7 @@
   </div>
 
   <input type="file" id="hiddenFileInput" style="display:none;" multiple />
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
+
 </html>

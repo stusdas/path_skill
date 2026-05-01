@@ -1,0 +1,49 @@
+{
+  "id": "c01c1485-c995-4517-8f6d-79f7f59d9616",
+  "title": "新的会话",
+  "type": "standard",
+  "updated_at": "2026-05-01T02:33:40.904160",
+  "active_main_mode": "deep_understanding",
+  "active_sub_mode": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "我很难过最近",
+      "avatar": null,
+      "created_at": "2026-05-01T02:29:54.734168"
+    },
+    {
+      "role": "assistant",
+      "content": "听到你说“很难过”，我先不急着问发生了什么。\n\n我想先确认一件事——这种难过，是最近某件具体的事情触发的，还是更像一种说不清的、持续压着的情绪？\n\n有时候“难过”这个词本身，就已经在说：不只是心情不好，而是心里有什么东西被触到了。",
+      "avatar": null,
+      "created_at": "2026-05-01T02:30:08.532910"
+    },
+    {
+      "role": "user",
+      "content": "我最近觉得自己很差劲",
+      "avatar": null,
+      "created_at": "2026-05-01T02:33:37.533418"
+    },
+    {
+      "role": "assistant",
+      "content": "听到你说“觉得自己很差劲”，这句话本身就很重。\n\n我先不急着问“为什么这么觉得”，而是想先确认一件事——\n\n这种“差劲感”，是最近发生了某件具体的事（比如某个选择没做好、某个结果不如预期），然后你把它归结到了自己身上？还是说，它更像是一种弥漫的状态——没有特别的事，但就是觉得自己不够好？\n\n因为从我们之前的对话来看，你其实很清楚自己有一个模式：会把“不完美的结果”直接等同于“我这个人不行”。所以我想先帮你分清楚——这次是事情真的没做好，还是那个熟悉的模式又启动了？",
+      "avatar": null,
+      "created_at": "2026-05-01T02:33:40.903291"
+    }
+  ],
+  "analysis_state": {
+    "active": true,
+    "analysis_type": "deep_understanding",
+    "stage": "inner_tension_identification",
+    "stage_index": 2,
+    "topic": "我最近觉得自己很差劲",
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "我最近觉得自己很差劲",
+    "last_ai_reply": "听到你说“觉得自己很差劲”，这句话本身就很重。\n\n我先不急着问“为什么这么觉得”，而是想先确认一件事——\n\n这种“差劲感”，是最近发生了某件具体的事（比如某个选择没做好、某个结果不如预期），然后你把它归结到了自己身上？还是说，它更像是一种弥漫的状态——没有特别的事，但就是觉得自己不够好？\n\n因为从我们之前的对话来看，你其实很清楚自己有一个模式：会把“不完美的结果”直接等同于“我这个人不行”。所以我想先帮你分清楚——这次是事情真的没做好，还是那个熟悉的模式又启动了？",
+    "last_stage": "inner_tension_identification"
+  }
+}

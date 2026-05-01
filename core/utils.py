@@ -15,19 +15,37 @@ def now_str() -> str:
 
 def ensure_json(text: str) -> Dict[str, Any]:
     text = text.strip()
+    if not text:
+        return {}
     if text.startswith('```'):
         text = re.sub(r'^```(?:json)?', '', text).strip()
         text = re.sub(r'```$', '', text).strip()
-    try:
-        return json.loads(text)
-    except Exception:
-        pass
+    
+    def try_parse(t: str):
+        try:
+            v = json.loads(t)
+            if isinstance(v, str) and (v.strip().startswith('{') or v.strip().startswith('[')):
+                return try_parse(v)
+            return v
+        except Exception:
+            return None
+
+    # 1. Try standard parse
+    val = try_parse(text)
+    if isinstance(val, dict): return val
+
+    # 2. Try to fix truncated JSON by appending closing characters
+    if text.startswith('{'):
+        for fix in ['}', '"}', '"]}', '"}]}']:
+            val = try_parse(text + fix)
+            if isinstance(val, dict): return val
+
+    # 3. Try regex match for any { ... } block
     match = re.search(r'\{[\s\S]*\}', text)
     if match:
-        try:
-            return json.loads(match.group(0))
-        except Exception:
-            pass
+        val = try_parse(match.group(0))
+        if isinstance(val, dict): return val
+        
     return {'raw_output': text}
 
 

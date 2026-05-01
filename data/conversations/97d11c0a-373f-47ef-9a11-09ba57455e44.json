@@ -1,0 +1,49 @@
+{
+  "id": "97d11c0a-373f-47ef-9a11-09ba57455e44",
+  "title": "新的会话",
+  "type": "standard",
+  "updated_at": "2026-05-01T02:34:41.822874",
+  "active_main_mode": "normal",
+  "active_sub_mode": null,
+  "messages": [
+    {
+      "role": "user",
+      "content": "我很难过最近",
+      "avatar": null,
+      "created_at": "2026-05-01T02:34:05.174471"
+    },
+    {
+      "role": "assistant",
+      "content": "听到你这么说，我也觉得有点心疼。\n\n最近是发生什么具体的事了吗？还是就是那种说不清道不明的低落感，慢慢压上来的？",
+      "avatar": null,
+      "created_at": "2026-05-01T02:34:18.314974"
+    },
+    {
+      "role": "user",
+      "content": "我最近觉得自己很差劲",
+      "avatar": null,
+      "created_at": "2026-05-01T02:34:27.272907"
+    },
+    {
+      "role": "assistant",
+      "content": "听到你这么说，我心里紧了一下。\n\n这种\"觉得自己很差劲\"的感觉，是最近发生了什么具体的事吗？还是说，它就像背景音乐一样，不知不觉就响起来了？",
+      "avatar": null,
+      "created_at": "2026-05-01T02:34:40.700289"
+    }
+  ],
+  "analysis_state": {
+    "active": false,
+    "analysis_type": null,
+    "stage": null,
+    "stage_index": 0,
+    "topic": null,
+    "waiting_for_user": false,
+    "card_emitted": false,
+    "slot_fill": {}
+  },
+  "short_term_memory": {
+    "last_user_message": "我最近觉得自己很差劲",
+    "last_ai_reply": "听到你这么说，我心里紧了一下。\n\n这种\"觉得自己很差劲\"的感觉，是最近发生了什么具体的事吗？还是说，它就像背景音乐一样，不知不觉就响起来了？",
+    "last_stage": null
+  }
+}
