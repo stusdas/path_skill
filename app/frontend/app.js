@@ -66,6 +66,34 @@ function toast(text, persistent = false) {
   capabilityTip.onclick = () => { capabilityTip.classList.remove("show"); capabilityTip.onclick = null; };
 }
 
+function showPrompt(title, defaultValue, onConfirm) {
+  const overlay = $("#promptOverlay");
+  const input = $("#promptInput");
+  const confirmBtn = $("#promptConfirm");
+  const cancelBtn = $("#promptCancel");
+  $("#promptTitle").textContent = title;
+  input.value = defaultValue || "";
+  overlay.classList.add("show");
+  input.focus();
+  
+  const close = () => overlay.classList.remove("show");
+  confirmBtn.onclick = () => { onConfirm(input.value); close(); };
+  cancelBtn.onclick = close;
+}
+
+function showConfirm(title, desc, onOk) {
+  const overlay = $("#confirmOverlay");
+  const okBtn = $("#confirmOk");
+  const cancelBtn = $("#confirmCancel");
+  if (title) $("#confirmTitle").textContent = title;
+  $("#confirmDesc").textContent = desc;
+  overlay.classList.add("show");
+  
+  const close = () => overlay.classList.remove("show");
+  okBtn.onclick = () => { onOk(); close(); };
+  cancelBtn.onclick = close;
+}
+
 function mapMode(m) { return m === "普通聊天" ? "normal" : m === "深度理解" ? "deep_understanding" : "decision_support"; }
 function mapSub(c) { return c === "自我对立视角" ? "self_opposition" : c === "多角色聊天" ? "multi_role" : null; }
 
@@ -386,10 +414,107 @@ async function refreshConversations() {
 function renderConversationList() {
   if (!leftConversations) return; leftConversations.innerHTML = '';
   state.conversations.forEach(item => {
-    const btn = document.createElement('button'); btn.className = 'btn'; btn.style.cssText = `width:100%;justify-content:flex-start;margin-bottom:8px;padding:12px;border:${item.id === state.conversationId ? '1px solid #111' : '1px solid transparent'};background:${item.id === state.conversationId ? '#fff' : 'transparent'};`;
-    btn.innerHTML = `<div style="font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${item.title}</div>`;
-    btn.onclick = () => loadConversation(item.id); leftConversations.appendChild(btn);
+    const container = document.createElement('div');
+    container.className = 'conv-item';
+    
+    const btn = document.createElement('button');
+    btn.className = `btn-conv ${item.id === state.conversationId ? 'active' : ''}`;
+    
+    btn.innerHTML = `<div class="conv-title">${item.title}</div>`;
+    btn.onclick = () => loadConversation(item.id);
+    
+    const trigger = document.createElement('button');
+    trigger.className = 'conv-actions-trigger';
+    trigger.innerHTML = '···'; // Using horizontal dots
+    trigger.onclick = (e) => {
+        e.stopPropagation();
+        toggleConvMenu(item.id, trigger);
+    };
+    
+    container.appendChild(btn);
+    container.appendChild(trigger);
+    leftConversations.appendChild(container);
   });
+}
+
+let activeMenuConvId = null;
+function toggleConvMenu(id, trigger) {
+    const existingMenu = document.querySelector('.conv-menu');
+    if (existingMenu) {
+        const isSame = activeMenuConvId === id;
+        existingMenu.remove();
+        document.querySelectorAll('.conv-actions-trigger').forEach(t => t.classList.remove('active'));
+        activeMenuConvId = null;
+        if (isSame) return;
+    }
+    
+    activeMenuConvId = id;
+    trigger.classList.add('active');
+    
+    const conv = state.conversations.find(c => c.id === id);
+    const menu = document.createElement('div');
+    menu.className = 'conv-menu show';
+    
+    menu.innerHTML = `
+        <div class="conv-menu-item" id="menuRename">✏️ 重命名</div>
+        <div class="conv-menu-item danger" id="menuDelete">🗑️ 删除</div>
+    `;
+    
+    document.body.appendChild(menu);
+    
+    menu.querySelector('#menuRename').onclick = () => { menu.remove(); renameConvPrompt(id); };
+    menu.querySelector('#menuDelete').onclick = () => { menu.remove(); deleteConvConfirm(id); };
+
+    // Position menu near trigger
+    const rect = trigger.getBoundingClientRect();
+    menu.style.top = `${rect.bottom + 5}px`;
+    menu.style.left = `${rect.right - 125}px`;
+    
+    // Close on click outside
+    const closeMenu = (e) => {
+        if (!menu.contains(e.target) && !trigger.contains(e.target)) {
+            menu.remove();
+            activeMenuConvId = null;
+            trigger.classList.remove('active');
+            document.removeEventListener('click', closeMenu);
+        }
+    };
+    setTimeout(() => document.addEventListener('click', closeMenu), 0);
+}
+
+async function renameConvPrompt(id) {
+    const conv = state.conversations.find(c => c.id === id);
+    showPrompt("重命名会话", conv.title, async (newTitle) => {
+        if (newTitle && newTitle.trim() && newTitle !== conv.title) {
+            try {
+                await api('/api/conversations/rename-title', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ conversation_id: id, title: newTitle.trim() })
+                });
+                await refreshConversations();
+            } catch (e) {
+                toast("重命名失败: " + e.message);
+            }
+        }
+    });
+}
+
+
+async function deleteConvConfirm(id) {
+    showConfirm("删除会话", "确定要删除这个会话吗？此操作不可恢复。", async () => {
+        try {
+            await api(`/api/conversations/${id}`, { method: 'DELETE' });
+            if (state.conversationId === id) {
+                state.conversationId = null;
+                if (messageList) messageList.innerHTML = '';
+                if (welcomeBlock) welcomeBlock.style.display = 'flex';
+            }
+            await refreshConversations();
+        } catch (e) {
+            toast("删除失败: " + e.message);
+        }
+    });
 }
 
 async function loadConversation(id) {

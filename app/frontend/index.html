@@ -235,8 +235,34 @@
     </div>
   </div>
 
+  <!-- Prompt Modal -->
+  <div id="promptOverlay" class="modal-overlay">
+    <div class="modal" style="width: min(400px, 90%); padding: 24px;">
+      <h3 id="promptTitle" style="margin-bottom: 16px; font-family: var(--font-serif);"></h3>
+      <div class="form-group">
+        <input type="text" id="promptInput" style="width: 100%;">
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+        <button class="btn" id="promptCancel">取消</button>
+        <button class="btn btn-primary" id="promptConfirm">确定</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div id="confirmOverlay" class="modal-overlay">
+    <div class="modal" style="width: min(400px, 90%); padding: 24px;">
+      <h3 id="confirmTitle" style="margin-bottom: 16px; font-family: var(--font-serif);">确认操作</h3>
+      <p id="confirmDesc" style="font-size: 14px; color: var(--muted); line-height: 1.6;"></p>
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+        <button class="btn" id="confirmCancel">取消</button>
+        <button class="btn btn-primary btn-danger" id="confirmOk" style="border-color: #e74c3c; background: #e74c3c; color: #fff;">确定</button>
+      </div>
+    </div>
+  </div>
+
   <input type="file" id="hiddenFileInput" style="display:none;" multiple />
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 
 </html>

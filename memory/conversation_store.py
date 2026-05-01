@@ -22,10 +22,19 @@ def load_conversation(conversation_id: str) -> Conversation:
     return Conversation(**data)
 
 
+def delete_conversation(conversation_id: str) -> bool:
+    path = conversation_path(conversation_id)
+    if path.exists():
+        path.unlink()
+        return True
+    return False
+
+
 def list_conversations() -> List[Conversation]:
     items = []
-    for p in sorted(CONVERSATIONS_DIR.glob('*.json')):
+    for p in CONVERSATIONS_DIR.glob('*.json'):
         data = load_json(p, default=None)
         if data:
             items.append(Conversation(**data))
-    return sorted(items, key=lambda x: x.updated_at, reverse=True)
+    # Sort by is_pinned (True first) then updated_at (Newest first)
+    return sorted(items, key=lambda x: (x.is_pinned, x.updated_at), reverse=True)
